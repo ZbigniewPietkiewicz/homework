@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Data tree app</title>
+    <script type="text/javascript"></script>
+    <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container my-2">
+        <h1>Trees</h1>
+
+        <a th:href = "@{/tree/add}" class="btn btn-primary btn-sm mb-3"> Create tree </a>
+
+    </div>
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+          <th>
+            Tree name
+          </th>
+          <th> 
+            Actions 
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tree : ${listTrees}">
+          <td th:text="${tree.name}"></td>
+          <td> 
+            <a th:href="@{/tree/open/{id}(id=${tree.id})}" class="btn btn-primary">Open</a>
+            <a th:href="@{/tree/delete/{id}(id=${tree.id})}" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+</body>
+</html>
